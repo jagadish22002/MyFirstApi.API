@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyFirstApi.Data;
 using MyFirstApi.Services.Interfaces;
-using System;
-using System.Threading.Tasks;
 
 namespace MyFirstApi.Controllers
 {
