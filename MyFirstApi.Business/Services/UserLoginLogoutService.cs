@@ -32,7 +32,8 @@ namespace MyFirstApi.Services
             {
                 new Claim("userId", user.UserId.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name)
+                new Claim(ClaimTypes.Name, user.Name),
+
             };
 
             var keyString = _config["Jwt:Key"] ?? throw new InvalidOperationException("JWT key not found in configuration.");
