@@ -3,11 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using MyFirstApi.Data.Repositories;
 using MyFirstApi.DTOs;
 using MyFirstApi.Services.Interfaces;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyFirstApi.Services
 {
