@@ -5,20 +5,12 @@ using MyFirstApi.Data;
 using MyFirstApi.Business;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Kestrel to listen on port 9000
+// Configure Kestrel to listen only on HTTP port 3000
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    // HTTP
-    serverOptions.ListenAnyIP(9000);
-
-    // HTTPS (requires valid certificate)
-    serverOptions.ListenAnyIP(9001, listenOptions =>
-    {
-        listenOptions.UseHttps(); // will use default dev certificate
-    });
+    serverOptions.ListenAnyIP(3000); // HTTP only
 });
 
 // Configure PostgreSQL connection
@@ -43,7 +35,7 @@ builder.Services.AddCors(options =>
             .SetIsOriginAllowed(_ => true) // Allow any origin
             .AllowAnyMethod()
             .AllowAnyHeader();
-        // ? Do NOT use AllowCredentials() with AllowAnyOrigin (browser security restriction)
+        // Do NOT use AllowCredentials() with AllowAnyOrigin
     });
 });
 
@@ -86,16 +78,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); 
 
-//  Apply the CORS policy globally
+// Apply the CORS policy globally
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-//test
-
 app.MapControllers();
+
 app.Run();
